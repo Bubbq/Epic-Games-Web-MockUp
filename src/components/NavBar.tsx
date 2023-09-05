@@ -1,13 +1,14 @@
 //the navigation bar in this website
-import { HStack, Image, Text } from "@chakra-ui/react";
+import { HStack, Image } from "@chakra-ui/react";
 import epicGames from "../assets/epic-games (2).svg"; //imports the epic games logo from the assets folder
+import ColorModeSwitch from "./ColorModeSwitch";
 function NavBar() {
   return (
-    <HStack>
-      {/*lays our compnents horizontally*/}
+    <HStack justifyContent={"space-between"} padding={10}>
+      {/*lays our compnents horizontally, makes it have space inbetween, with 10px of padding so our switch is not so close to the edge*/}
       <Image src={epicGames} boxSize="60px" />
       {/*displays the epic games logo into, sets as 60px*/}
-      <Text>This Is the Navigation Bar</Text>
+      <ColorModeSwitch />
     </HStack>
   );
 }

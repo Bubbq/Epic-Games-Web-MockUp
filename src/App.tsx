@@ -16,11 +16,11 @@ function App() {
       </GridItem>
       <Show above="lg">
         {/*The side panel is only shown when the screen is above 'lg' or greater than 1024px*/}
-        <GridItem area="aside" bg="gold">
+        <GridItem area="aside">
           Aside
         </GridItem>
       </Show>
-      <GridItem area="main" bg="dodgerblue">
+      <GridItem area="main">
         Main
       </GridItem>
     </Grid>
