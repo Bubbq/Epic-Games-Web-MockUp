@@ -13,16 +13,15 @@ function App() {
     >
       <GridItem area="nav">
         <NavBar />
-        {/*displays the epic games icon only for the nav grid section*/}
+        {/*displays game icon top left, and dark mode toggling*/}
       </GridItem>
       <Show above="lg">
         {/*The side panel is only shown when the screen is above 'lg' or greater than 1024px*/}
-        <GridItem area="aside">
-          Aside
-        </GridItem>
+        <GridItem area="aside">Aside</GridItem>
       </Show>
       <GridItem area="main">
-       <GameGrid/>
+        <GameGrid />
+        {/*where the games are fetched from rawg.io and outputted on main panel */}
       </GridItem>
     </Grid>
   );
