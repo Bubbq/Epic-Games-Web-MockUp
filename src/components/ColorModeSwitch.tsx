@@ -8,7 +8,11 @@ function ColorModeSwitch() {
     <HStack>
       {/*horizontal switch bc we want the switch and then the label next to it*/}
 
-      <Switch colorScheme = 'blue' isChecked={colorMode == "dark"} onChange={toggleColorMode} />
+      <Switch
+        colorScheme="blue"
+        isChecked={colorMode == "dark"}
+        onChange={toggleColorMode}
+      />
       {/*on change of option, toggle colorMode to light/dark, colorScheme is the color when its activated*/}
       <Text>Dark Mode</Text>
     </HStack>

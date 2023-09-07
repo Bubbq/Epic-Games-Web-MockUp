@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
-interface Game {
+export interface Game {//exporting this interface to use in GameCard to beautify its output
     //the shape of a singular game as defined in rawg.io
     id: number; //identification needed for output as list and uniqueness in server
     name: string; //name of the game
+    background_image: string;//the background img info each game contains
   }
   
 interface FetchGamesResponse {
@@ -21,14 +22,17 @@ function useGames(){
   
     useEffect(() => {
         const controller = new AbortController();
-      //where we set up the axios http requests
-      apiClient
+      apiClient//where we set up the axios http requests
         .get<FetchGamesResponse>("/games", {signal: controller.signal}) //the <> is used so the get knows the shape of the response data, the signal: is for cancelling ongoing fetch requets
+        
         .then((responseData) => setGames(responseData.data.results)) //if  fetch is sucessfull, get response data to modify the game object arr
+        
         .catch((possibleError) => {//if there's any error, get the error message caught and set it to our empty string
-            if(possibleError instanceof CanceledError)  return;//checking for canceled req.
+            
+          if(possibleError instanceof CanceledError)  return;//checking for canceled req.
             setError(possibleError.message)
-        }); 
+        
+          }); 
         return () => controller.abort;//cleanup function, prevents memory leaks and removes unwanted behaviours
     }, []);    //empty arr (arr of dependencies) is stop constantly sending requests for out backend  
 
