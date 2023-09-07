@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
-export interface Platform{//describes the shape of one platform in the parent_platform array, raw.io did a terrible job here..., exporting so PLatformIconList can use it
+export interface Platform{//describes the shape of one platform in the parent_platform array, raw.io did a terrible job here..., exporting so PLatformIconList can use
   id: number,
   name: string,
   slug: string,
@@ -15,6 +15,7 @@ export interface Game {//exporting this interface to use in GameCard to beautify
     name: string; //name of the game
     background_image: string;//the background img info each game contains
     parent_platforms: {platform: Platform}[] //the platforms this game is availble on, an arr obj
+    metacritic: number,//the score of each game
   }
   
 interface FetchGamesResponse {

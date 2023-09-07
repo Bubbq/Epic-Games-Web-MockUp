@@ -1,7 +1,8 @@
 // will output the games as cards/boxes, rather than bulletpoints b4, the anatomy of a single card of the game
-import { Card, CardBody, Heading, Image, Text } from "@chakra-ui/react";
-import useGames, { Game } from "../hooks/fetchGames";
+import { Card, CardBody, HStack, Heading, Image } from "@chakra-ui/react";
+import fetchGames, { Game } from "../hooks/fetchGames";
 import PlatformIconList from "./PlatformIconList";
+import CriticScore from "./CriticScore";
 
 interface Props {
   game: Game; //from fetchGames (actually getting the game data
@@ -17,11 +18,14 @@ function GameCard({ game }: Props) {
       <CardBody>
         <Heading fontSize="xl">{game.name}</Heading>
         {/*outputting the name of each game*/}
-        <PlatformIconList
-          platforms={game.parent_platforms.map(
-            (platforms) => platforms.platform
-            )}
-            />{/*this constructs an array of platform obj to pass to the prop in PlatforIconList */}
+        <HStack justifyContent='space-between'>
+          {/*there to keep the score and icons on the same line*/}
+          <PlatformIconList
+            platforms={game.parent_platforms.map((p) => p.platform)}
+          />
+          {/*this constructs an array of platform obj to pass to the prop in PlatforIconList */}
+          <CriticScore score={game.metacritic} />
+        </HStack>
       </CardBody>
     </Card>
   );
