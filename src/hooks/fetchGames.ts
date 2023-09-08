@@ -27,7 +27,7 @@ interface FetchGamesResponse {
 function fetchGames(){
     const [games, setGames] = useState<Game[]>([]); //initilizes an empty array to hold the game objects that are being fetched from the server
     const [error, setError] = useState(""); //possible errors that may arise from fetching, this is the messaging that would return
-  const [isLoading, setLoading] = useState(false);
+    const [isLoading, setLoading] = useState(false);
     
   useEffect(() => {
         const controller = new AbortController();

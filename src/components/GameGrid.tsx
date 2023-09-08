@@ -6,7 +6,7 @@ import GameCardSkeleton from "./GameCardSkeleton";
 
 function GameGrid() {
   const { games, error, isLoading } = fetchGames(); //destructuring the two variables in useGames custom hook to use them
-  const skeletons = [1, 2, 3, 4, 5, 6]; //the amount of skeleton cards we want to generate everytime it loads
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; //the amount of skeleton cards we want to generate everytime it loads
   return (
     <>
       {error && <Text>{error}</Text>}
@@ -23,7 +23,7 @@ function GameGrid() {
         {games.map(
           //this callback function maps out every element of the games array obj to the screen
           (singleGame) => (
-            <GameCard key={singleGame.id} game={singleGame}></GameCard> //gameCard is comp. with each game img, and heading of game outputted
+            <GameCard key={singleGame.id} game={singleGame} /> //gameCard is comp. with each game img, and heading of game outputted
           )
         )}
       </SimpleGrid>
