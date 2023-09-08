@@ -1,11 +1,12 @@
 //contains the implementation for outputting our games onto the main grid of the screen
-import useGames from "../hooks/fetchGames";
+import fetchGames from "../hooks/fetchGames";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import GameCard from "./GameCard";
+import GameCardSkeleton from "./GameCardSkeleton";
 
 function GameGrid() {
-  const { games, error } = useGames(); //destructuring the two variables in useGames custom hook to use them
-
+  const { games, error, isLoading } = fetchGames(); //destructuring the two variables in useGames custom hook to use them
+  const skeletons = [1, 2, 3, 4, 5, 6]; //the amount of skeleton cards we want to generate everytime it loads
   return (
     <>
       {error && <Text>{error}</Text>}
@@ -15,7 +16,10 @@ function GameGrid() {
         padding="10px"
         spacing={10}
       >
-        {/*obj in columns makes it where depending on screen size, x amount of cards will render */}
+        {isLoading &&
+          skeletons.map((singleSkelton) => (
+            <GameCardSkeleton key={singleSkelton} />
+          ))}
         {games.map(
           //this callback function maps out every element of the games array obj to the screen
           (singleGame) => (
