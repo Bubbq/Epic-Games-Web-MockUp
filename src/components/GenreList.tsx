@@ -3,12 +3,12 @@
 import fetchGenres from "../hooks/fetchGenres";
 
 function GenreList() {
-  const { genres } = fetchGenres();//denconsturcting  genre from the fetchFunction
+  const { data } = fetchGenres();//get data array from fetchGenres, who gets it from fetchData
 
   return (
     <ul>
-      {genres.map((singleGenre) => (//map out all the elements of the genre array to an order list to the aside grid in App.tsx
-        <li key={singleGenre.id}>{singleGenre.name}</li>
+      {data.map((singleData) => (//map out all the elements of the genre array to an order list to the aside grid in App.tsx
+        <li key={singleData.id}>{singleData.name}</li>
       ))}
     </ul>
   );

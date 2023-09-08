@@ -19,7 +19,8 @@ function App() {
       <Show above="lg">
         {/*The side panel is only shown when the screen is above 'lg' or greater than 1024px*/}
         <GridItem area="aside">
-          <GenreList />
+          <GenreList />{" "}
+          {/*outputting all the availible genres to the side of the website */}
         </GridItem>
         {/*printing the availble genres to the side */}
       </Show>
