@@ -15,9 +15,10 @@ function GameGrid() {
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         padding="10px"
         spacing={10}
+        spacingX={5}
       >
         {isLoading &&
-          skeletons.map((singleSkelton) => (
+          skeletons.map((singleSkelton) => (//map out every loading skelton
             <GameCardSkeleton key={singleSkelton} />
           ))}
         {data.map(

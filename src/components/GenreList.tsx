@@ -1,17 +1,26 @@
-//implementation to output the items of the genre array out
-
+import { HStack, Image, List, ListItem, Text } from "@chakra-ui/react";
 import fetchGenres from "../hooks/fetchGenres";
+import getCroppedImageUrl from "../services/img-url";
 
-function GenreList() {
-  const { data } = fetchGenres();//get data array from fetchGenres, who gets it from fetchData
+const GenreList = () => {
+  const { data } = fetchGenres();//get the return value 'data' from the hook fetchGenres
 
   return (
-    <ul>
-      {data.map((singleData) => (//map out all the elements of the genre array to an order list to the aside grid in App.tsx
-        <li key={singleData.id}>{singleData.name}</li>
+    <List>
+      {data.map((genre) => (//map out every element of the genre array with the img
+        <ListItem key={genre.id} paddingY = "5px">
+          <HStack>
+            <Image
+              boxSize="32px"
+              borderRadius={8}
+              src={getCroppedImageUrl(genre.image_background)}//using the cropped function, taking a string, and live crops the img url fetched from fetchGenre and fetchData
+            />
+            <Text fontSize = "lg">{genre.name}</Text>
+          </HStack>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
-}
+};
 
 export default GenreList;

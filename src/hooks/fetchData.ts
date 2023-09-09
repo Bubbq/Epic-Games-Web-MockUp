@@ -35,7 +35,7 @@ function fetchData<T>(endpoint: string){//generic type parameter, this data type
     return () => controller.abort();//cleanup function
   }, []);
 
-  return { data, error, isLoading };//return these varirables to genreList and gameGrind to print out the values
+  return { data, error, isLoading };//return these varirables to fetchGame and fetchGenres to then return to gameGrid/genreList
 };
 
 export default fetchData;

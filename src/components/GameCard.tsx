@@ -1,6 +1,6 @@
 // will output the games as cards/boxes, rather than bulletpoints b4, the anatomy of a single card of the game
 import { Card, CardBody, HStack, Heading, Image } from "@chakra-ui/react";
-import fetchGames, { Game } from "../hooks/fetchGames";
+import { Game } from "../hooks/fetchGames";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import getCroppedImgUrl from "../services/img-url";
