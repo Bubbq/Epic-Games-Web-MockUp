@@ -1,6 +1,6 @@
 //outputting each genre onto the side of the website
 
-import { Button, HStack, Image, List, ListItem, Spinner, Text } from "@chakra-ui/react";
+import { Button, HStack, Image, List, ListItem, Spinner } from "@chakra-ui/react";
 import fetchGenres, { Genre } from "../hooks/fetchGenres";
 import getCroppedImageUrl from "../services/img-url";
 

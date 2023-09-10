@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM, { createRoot } from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import App from "./App";
 import theme from "./theme"; //the themes the website will take on
