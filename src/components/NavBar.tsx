@@ -6,7 +6,7 @@ function NavBar() {
   return (
     <HStack justifyContent={"space-between"} padding={10}>
       {/*lays our compnents horizontally, makes it have space inbetween, with 10px of padding so our switch is not so close to the edge*/}
-      <Image src={epicGames} boxSize="60px" />
+      <Image src={epicGames} boxSize="75px" />
       {/*displays the epic games logo into, sets as 60px*/}
       <ColorModeSwitch />
     </HStack>

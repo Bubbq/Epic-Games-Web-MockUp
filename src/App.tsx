@@ -4,9 +4,12 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
 import { Genre } from "./hooks/fetchGenres";
+import SelectPlatform from "./components/SelectPlatform";
+import { Platform } from "./hooks/fetchGames";
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null); //this represents genre selcted by the user from genreList, then is put to gameGrid to output only the related games, tags are to let the state know were carrying a genre obj
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null)//rep the platform selected by user from drop down menu
   return (
     <Grid
       templateAreas={{
@@ -14,7 +17,6 @@ function App() {
         base: `"nav" "main"`, //on mobile, hides the side panel
         lg: `"nav nav " "aside main"`, //on larger devices ( > 1024 px)
       }}
-      
     >
       <GridItem area="nav">
         <NavBar />
@@ -29,7 +31,8 @@ function App() {
         {/*printing the availble genres to the side */}
       </Show>
       <GridItem area="main">
-        <GameGrid selectedGenre={selectedGenre}/>
+        <SelectPlatform selectedPlatform={selectedPlatform} onSelectPlatform={(passedPlatform) => setSelectedPlatform(passedPlatform)}/>
+        <GameGrid selectedPlatform ={selectedPlatform} selectedGenre={selectedGenre}/>
         {/*where the games are fetched from rawg.io and outputted on main panel */}
       </GridItem>
     </Grid>

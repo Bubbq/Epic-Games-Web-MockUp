@@ -1,5 +1,5 @@
 //contains the implementation for outputting our games onto the main grid of the screen
-import fetchGames from "../hooks/fetchGames";
+import fetchGames, { Platform } from "../hooks/fetchGames";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
@@ -7,10 +7,11 @@ import { Genre } from "../hooks/fetchGenres";
 
 interface Props{
   selectedGenre: Genre | null//the genre that is passed from the app comp here to display the games that are that selected genre
+  selectedPlatform: Platform | null //the platform that was passed to app from selectPlatofrm (the drop-down menu)
 }
 
-function GameGrid({selectedGenre}: Props) {
-  const { data, error, isLoading } = fetchGames(selectedGenre); //getting the two variables in fetchGame custom hook to use them, data is from fetchData, passing the selected genre from the user to only render the ones that the user chose
+function GameGrid({selectedGenre, selectedPlatform}: Props) {
+  const { data, error, isLoading } = fetchGames(selectedGenre, selectedPlatform); //getting the two variables in fetchGame custom hook to use them, data is from fetchData, passing the selected genre from the user to only render the ones that the user chose
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]; //the amount of skeleton cards we want to generate everytime it loads
   return (
     <>

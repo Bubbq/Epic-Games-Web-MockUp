@@ -38,7 +38,7 @@ function PlatformIconList({ platforms }: Props) {
       {/*gives spacing from icon to heading of gameCard */}
       {/*Horizontally printing each icon */}
       {platforms.map((platform) => (
-        <Icon key = {platform.id} as={iconMap[platform.slug]} color="gray.500" />
+        <Icon key = {platform.id} as={iconMap[platform.slug]} color= "gray.500" />
       ))}
       {/*prints out (words only the platforms each game is availible on) */}
     </HStack>
