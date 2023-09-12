@@ -14,7 +14,7 @@ function ColorModeSwitch() {
         onChange={toggleColorMode}
       />
       {/*on change of option, toggle colorMode to light/dark, colorScheme is the color when its activated*/}
-      <Text>Dark/Light Mode</Text>
+      <Text whiteSpace={'nowrap'}>Change Theme</Text>
     </HStack>
   );
 }

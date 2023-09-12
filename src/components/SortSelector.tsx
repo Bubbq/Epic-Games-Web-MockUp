@@ -6,7 +6,7 @@ import { BsChevronDown } from "react-icons/bs";
 interface Props {
   //the stuff coming from app
   onSelecSortOrder: (sortOption: string) => void; // a function that will take in the sortOption value and send to gamegrid to sort the gameCards
-  sortOrder: string//the selected value returned back from app to be matched with its pared label
+  sortOrder: string; //the selected value returned back from app to be matched with its pared label
 }
 
 function SortSelector({ onSelecSortOrder, sortOrder }: Props) {
@@ -20,13 +20,12 @@ function SortSelector({ onSelecSortOrder, sortOrder }: Props) {
     { value: "-rating", label: "Rating" },
   ];
 
+  const currentSortOrder = sortOptions.find((order) => order.value === sortOrder); //use the callback function to find the sortOrder element with the matching value
 
-  const currentSortOrder = sortOptions.find(order => order.value === sortOrder)//use the callback function to find the sortOrder element with the matching value 
-  
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Order by: {currentSortOrder?.label || 'Relevance'}
+        Order by: {currentSortOrder?.label || "Relevance"}
       </MenuButton>
       <MenuList>
         {sortOptions.map((sortOption) => (

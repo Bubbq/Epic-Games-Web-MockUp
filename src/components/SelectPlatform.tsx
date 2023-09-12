@@ -15,6 +15,7 @@ function SelectPlatform({ onSelectPlatform, selectedPlatform }: Props) {
 
   return (
     <Menu>
+    
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
         {selectedPlatform ? selectedPlatform.name : "Platform"}
         {/* set the name to the platform the user pressed, and if they haven't yet, just output 'Platform' */}
@@ -28,7 +29,7 @@ function SelectPlatform({ onSelectPlatform, selectedPlatform }: Props) {
             {singlePlatform.name}
           </MenuItem>
         ))}
-        {/*maps out all platforms fetched to a menuitem, when this is pressed, a function from app tsx will take teh platform chosen, and return null */}
+        {/*maps out all platforms fetched to a menuitem, when this is pressed, a function from app tsx will take the  platform chosen, and return null */}
       </MenuList>
     </Menu>
   );
