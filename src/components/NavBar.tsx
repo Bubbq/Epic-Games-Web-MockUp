@@ -1,6 +1,6 @@
 //the navigation bar in this website
 import { HStack, Image } from "@chakra-ui/react";
-import epicGames from "../assets/epic-games (2).svg"; //imports the epic games logo from the assets folder
+import epicGames from "../assets/epic-games-logo-0.png"; //imports the epic games logo from the assets folder
 import ColorModeSwitch from "./ColorModeSwitch";
 import SearchBar from "./SearchBar";
 
