@@ -14,7 +14,7 @@ function GameCard({ game }: Props) {
   return (
     <Card borderRadius={10} overflow={"hidden"}>
       {/*the div of one card, bordeRadius makes courners more round, overflow hidden make it where the img is not larger than its container*/}
-      <Image src={getCroppedImgUrl(game.background_image)} />
+      <Image src={game.background_image && getCroppedImgUrl(game.background_image)} />
       {/*passes the url of each game to get it cropped */}
       {/*the src of the pic is the background img string of each game fetched */}
       <CardBody>

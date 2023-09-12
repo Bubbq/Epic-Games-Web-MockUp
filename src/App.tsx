@@ -12,6 +12,7 @@ export interface GameQuery {
   //this obj represents all the user choosing stuff passed from their respective components
   genre: Genre | null; //the genre selected by the user from GenreList
   platform: Platform | null; //the platfrom the user chose in SelectPLatform
+  sortOrder: string; // the name returned to SortSelctor to send to gameGrid to rerender
 }
 
 function App() {
@@ -43,10 +44,14 @@ function App() {
       <GridItem area="main">
         <HStack spacing={3} paddingLeft={2} marginBottom={5}>
           <SelectPlatform
-            onSelectPlatform={(platform) => setGameQuery({ ...gameQuery, platform })}//first update the gameQuery's platform to the one passed in SelecPlatform
-            selectedPlatform={gameQuery.platform}//then pass that obj back to update the drop down menu's name
+            onSelectPlatform={(platform) =>setGameQuery({ ...gameQuery, platform })} //first update the gameQuery's platform to the one passed in SelecPlatform
+            selectedPlatform={gameQuery.platform} //then pass that obj back to update the drop down menu's name
           />
-          <SortSelector />
+          <SortSelector
+            onSelecSortOrder={(sortOrder) => setGameQuery({ ...gameQuery, sortOrder })}
+            sortOrder={gameQuery.sortOrder}//the value being passed back to be used to find the matching label 
+          />
+          {/*get the value/order member  passed from this comp and update game query, will send to game grid to organize game cards accordingly*/}
         </HStack>
         <GameGrid
           gameQuery={gameQuery} //pass the user chosen genre and platform to game grid to filter the gameCards out
