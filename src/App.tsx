@@ -1,4 +1,4 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
@@ -6,16 +6,17 @@ import { useState } from "react";
 import { Genre } from "./hooks/fetchGenres";
 import SelectPlatform from "./components/SelectPlatform";
 import { Platform } from "./hooks/fetchGames";
+import SortSelector from "./components/SortSelector";
 
-export interface GameQuery{//this obj represents all the user choosing stuff passed from their respective components
-  genre: Genre | null//the genre selected by the user from GenreList
-  platform: Platform | null //the platfrom the user chose in SelectPLatform
+export interface GameQuery {
+  //this obj represents all the user choosing stuff passed from their respective components
+  genre: Genre | null; //the genre selected by the user from GenreList
+  platform: Platform | null; //the platfrom the user chose in SelectPLatform
 }
 
 function App() {
-  
-const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery)  
-  
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+
   return (
     <Grid
       templateAreas={{
@@ -28,25 +29,27 @@ const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery)
         <NavBar />
         {/*displays game icon top left, and dark mode toggling*/}
       </GridItem>
+
       <Show above="lg">
         {/*The side panel is only shown when the screen is above 'lg' or greater than 1024px*/}
         <GridItem area="aside" paddingX={3}>
           <GenreList
-            onSelectedGenre={(genre) => setGameQuery({...gameQuery, genre})}//first update the gameQuery obj with the new genre
-            selectedGenre={gameQuery.genre}//then pass that genre back to genreList for txt bolding and the game grid to filter out the new games
+            onSelectedGenre={(genre) => setGameQuery({ ...gameQuery, genre })} //first update the gameQuery obj with the new genre
+            selectedGenre={gameQuery.genre} //then pass that genre back to genreList for txt bolding and the game grid to filter out the new games
           />
-          {/*when the genre is selected, set selected genre to that choice */}
-          {/*outputting all the availible genres to the side of the website */}
         </GridItem>
-        {/*printing the availble genres to the side */}
       </Show>
+
       <GridItem area="main">
-        <SelectPlatform
-          onSelectPlatform={(platform) => setGameQuery({ ...gameQuery, platform})} //first update  the gameQuery's platform, then return it back to SelectPlatform to rename the dropdown menu 
-          selectedPlatform={gameQuery.platform}
-        />
+        <HStack spacing={3} paddingLeft={2} marginBottom={5}>
+          <SelectPlatform
+            onSelectPlatform={(platform) => setGameQuery({ ...gameQuery, platform })}//first update the gameQuery's platform to the one passed in SelecPlatform
+            selectedPlatform={gameQuery.platform}//then pass that obj back to update the drop down menu's name
+          />
+          <SortSelector />
+        </HStack>
         <GameGrid
-         gameQuery={gameQuery}//pass the user chosen genre and platform to game grid to filter the gameCards out
+          gameQuery={gameQuery} //pass the user chosen genre and platform to game grid to filter the gameCards out
         />
         {/*where the games are fetched from rawg.io and outputted on main panel */}
       </GridItem>
