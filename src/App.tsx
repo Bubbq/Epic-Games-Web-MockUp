@@ -7,9 +7,15 @@ import { Genre } from "./hooks/fetchGenres";
 import SelectPlatform from "./components/SelectPlatform";
 import { Platform } from "./hooks/fetchGames";
 
+export interface GameQuery{//this obj represents all the user choosing stuff passed from their respective components
+  genre: Genre | null//the genre selected by the user from GenreList
+  platform: Platform | null //the platfrom the user chose in SelectPLatform
+}
+
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null); //this represents genre selcted by the user from genreList, then is put to gameGrid to output only the related games, tags are to let the state know were carrying a genre obj
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null)//rep the platform selected by user from drop down menu
+  
+const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery)  
+  
   return (
     <Grid
       templateAreas={{
@@ -24,15 +30,24 @@ function App() {
       </GridItem>
       <Show above="lg">
         {/*The side panel is only shown when the screen is above 'lg' or greater than 1024px*/}
-        <GridItem area="aside" paddingX={5}>
-          <GenreList selectedGenre ={selectedGenre} onSelectedGenre={(genre) =>setSelectedGenre(genre)}/>{/*when the genre is selected, set selected genre to that choice */}
+        <GridItem area="aside" paddingX={3}>
+          <GenreList
+            onSelectedGenre={(genre) => setGameQuery({...gameQuery, genre})}//first update the gameQuery obj with the new genre
+            selectedGenre={gameQuery.genre}//then pass that genre back to genreList for txt bolding and the game grid to filter out the new games
+          />
+          {/*when the genre is selected, set selected genre to that choice */}
           {/*outputting all the availible genres to the side of the website */}
         </GridItem>
         {/*printing the availble genres to the side */}
       </Show>
       <GridItem area="main">
-        <SelectPlatform selectedPlatform={selectedPlatform} onSelectPlatform={(passedPlatform) => setSelectedPlatform(passedPlatform)}/>
-        <GameGrid selectedPlatform ={selectedPlatform} selectedGenre={selectedGenre}/>
+        <SelectPlatform
+          onSelectPlatform={(platform) => setGameQuery({ ...gameQuery, platform})} //first update  the gameQuery's platform, then return it back to SelectPlatform to rename the dropdown menu 
+          selectedPlatform={gameQuery.platform}
+        />
+        <GameGrid
+         gameQuery={gameQuery}//pass the user chosen genre and platform to game grid to filter the gameCards out
+        />
         {/*where the games are fetched from rawg.io and outputted on main panel */}
       </GridItem>
     </Grid>

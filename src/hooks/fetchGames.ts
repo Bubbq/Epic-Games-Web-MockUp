@@ -1,8 +1,8 @@
 //contains the main functionality of fetching our games
+import { GameQuery } from "../App";
 import fetchData from "./fetchData";
-import { Genre } from "./fetchGenres";
 
-export interface Platform{//describes the shape of one platform in the parent_platform array, raw.io did a terrible job here..., exporting so PLatformIconList can use
+export interface Platform{//describes the shape of one platform in the parent_platform array, exporting so PlatformIconList can use, this arrives from the app
   id: number,
   name: string,
   slug: string,
@@ -17,6 +17,6 @@ export interface Game {//exporting this interface to use in GameCard to beautify
     metacritic: number,//the score of each game
   }
   
-const fetchGames = (selectedGenre: Genre | null, selectedPlatform: Platform | null) => fetchData<Game>('/games', {params: {genres: selectedGenre?.id, parent_platforms: selectedPlatform?.id}}, [selectedGenre?.id, selectedPlatform?.id]);//calling the modular fetchData hook with generic type paramter Game, the params just lets axios know to to look for when rendering, the selected Genre.id tells the useEffect hook in fetchData how many times you refresh the games (either once or not at all, depening on array of dependencis passed)
+const fetchGames = (gameQuery: GameQuery) => fetchData<Game>('/games', {params: {genres: gameQuery.genre?.id, parent_platforms: gameQuery.platform?.id}}, [gameQuery]);//calling the modular fetchData hook with generic type paramter Game, using both members that users choose in gameQuery, and have it in array of dependecis, meaning, that with everychange in gameQuery (from userchoice) rerender the request
 
 export default fetchGames
