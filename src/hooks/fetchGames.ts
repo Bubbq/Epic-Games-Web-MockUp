@@ -17,6 +17,6 @@ export interface Game {//exporting this interface to use in GameCard to beautify
     metacritic: number,//the score of each game
   }
   
-const fetchGames = (gameQuery: GameQuery) => fetchData<Game>('/games', {params: {genres: gameQuery.genre?.id, parent_platforms: gameQuery.platform?.id, ordering: gameQuery.sortOrder}}, [gameQuery]);//calling the modular fetchData hook with generic type paramter Game, using both members that users choose in gameQuery, and have it in array of dependecis, meaning, that with everychange in gameQuery (from userchoice) rerender the request
+const fetchGames = (gameQuery: GameQuery) => fetchData<Game>('/games', {params: {genres: gameQuery.genre?.id, parent_platforms: gameQuery.platform?.id, ordering: gameQuery.sortOrder, search: gameQuery.searchText}}, [gameQuery]);//calling the modular fetchData hook with generic type paramter Game, using both members that users choose in gameQuery, and have it in array of dependecis, meaning, that with everychange in gameQuery (from userchoice) rerender the request
 
 export default fetchGames

@@ -9,12 +9,12 @@ function ColorModeSwitch() {
       {/*horizontal switch bc we want the switch and then the label next to it*/}
 
       <Switch
-        colorScheme="blue"
+        colorScheme="gray" //the color the switch is when activated
         isChecked={colorMode == "dark"}
         onChange={toggleColorMode}
       />
       {/*on change of option, toggle colorMode to light/dark, colorScheme is the color when its activated*/}
-      <Text whiteSpace={'nowrap'}>Change Theme</Text>
+      <Text whiteSpace={'nowrap'}>Dark Mode</Text>
     </HStack>
   );
 }
