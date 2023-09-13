@@ -18,16 +18,13 @@ function GameCard({ game }: Props) {
       {/*passes the url of each game to get it cropped */}
       {/*the src of the pic is the background img string of each game fetched */}
       <CardBody>
-        <Heading fontSize="xl">{game.name}</Heading>
-        {/*outputting the name of each game*/}
-        <HStack justifyContent="space-between">
-          {/*there to keep the score and icons on the same line*/}
+        <HStack justifyContent="space-between">{/*there to keep the score and icons on the same line*/}
           <PlatformIconList
             platforms={game.parent_platforms.map((p) => p.platform)}
-          />
-          {/*this constructs an array of platform obj to pass to the prop in PlatforIconList */}
-          <CriticScore score={game.metacritic} />
+           /> {/*this constructs an array of platform obj to pass to the prop in PlatforIconList */}
+          <CriticScore score={game.metacritic}/>
         </HStack>
+        <Heading fontSize="xl">{game.name}</Heading>{/*outputting the name of each game*/}
       </CardBody>
     </Card>
   );
